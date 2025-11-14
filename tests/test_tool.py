@@ -195,8 +195,8 @@ class TestClickhouseWriteMode(unittest.TestCase):
         result = run_query(create_query)
         self.assertIsInstance(result, dict)
 
-        tables = list_tables(self.test_db)
-        table_names = [t["name"] for t in tables]
+        result = list_tables(self.test_db)
+        table_names = [t["name"] for t in result["tables"]]
         self.assertIn("ddl_test", table_names)
 
         self.client.command(f"DROP TABLE {self.test_db}.ddl_test")
@@ -217,9 +217,9 @@ class TestClickhouseWriteMode(unittest.TestCase):
         result = run_query(alter_query)
         self.assertIsInstance(result, dict)
 
-        tables = list_tables(self.test_db, like="alter_test")
-        self.assertEqual(len(tables), 1)
-        column_names = [col["name"] for col in tables[0]["columns"]]
+        result = list_tables(self.test_db, like="alter_test")
+        self.assertEqual(len(result["tables"]), 1)
+        column_names = [col["name"] for col in result["tables"][0]["columns"]]
         self.assertIn("name", column_names)
 
         self.client.command(f"DROP TABLE {self.test_db}.alter_test")
@@ -329,8 +329,8 @@ class TestClickhouseDropProtection(unittest.TestCase):
         result = run_query(create_query)
         self.assertIsInstance(result, dict)
 
-        tables = list_tables(self.test_db)
-        table_names = [t["name"] for t in tables]
+        result = list_tables(self.test_db)
+        table_names = [t["name"] for t in result["tables"]]
         self.assertIn("create_test", table_names)
 
         self.client.command(f"DROP TABLE {self.test_db}.create_test")
