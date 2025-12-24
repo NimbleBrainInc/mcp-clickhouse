@@ -1,0 +1,19 @@
+{
+  "manifest_version": "0.3",
+  "name": "ai.nimbletools/clickhouse",
+  "version": "0.1.13",
+  "description": "ClickHouse database connectivity with read-only SQL queries, schema exploration, and chDB support",
+  "author": {
+    "name": "ClickHouse Inc"
+  },
+  "server": {
+    "type": "python",
+    "entry_point": "mcp_clickhouse/mcp_server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": [
+        "${__dirname}/mcp_clickhouse/mcp_server.py"
+      ]
+    }
+  }
+}
