@@ -1,49 +1,42 @@
 {
   "manifest_version": "0.3",
   "name": "ai.nimbletools/clickhouse",
-  "version": "0.1.13-mcpb.2",
+  "version": "0.1.13-mcpb.3",
   "description": "ClickHouse database connectivity with read-only SQL queries, schema exploration, and chDB support",
   "author": {
     "name": "ClickHouse Inc"
   },
   "user_config": {
-    "clickhouse_host": {
+    "host": {
       "type": "string",
+      "title": "Host",
       "description": "ClickHouse server hostname",
       "required": true
     },
-    "clickhouse_user": {
+    "user": {
       "type": "string",
+      "title": "Username",
       "description": "Username for authentication",
       "required": true
     },
-    "clickhouse_password": {
+    "password": {
       "type": "string",
+      "title": "Password",
       "description": "Password for authentication",
-      "required": true,
-      "secret": true
+      "sensitive": true,
+      "required": true
     },
-    "clickhouse_port": {
-      "type": "number",
+    "port": {
+      "type": "string",
+      "title": "Port",
       "description": "Port number (default: 8443 for secure, 8123 for insecure)",
       "required": false
     },
-    "clickhouse_database": {
+    "database": {
       "type": "string",
+      "title": "Database",
       "description": "Default database to use",
       "required": false
-    },
-    "clickhouse_secure": {
-      "type": "boolean",
-      "description": "Enable HTTPS (default: true)",
-      "required": false,
-      "default": true
-    },
-    "clickhouse_verify": {
-      "type": "boolean",
-      "description": "Verify SSL certificates (default: true)",
-      "required": false,
-      "default": true
     }
   },
   "server": {
@@ -53,13 +46,11 @@
       "command": "python",
       "args": ["-m", "mcp_clickhouse.mcp_server"],
       "env": {
-        "CLICKHOUSE_HOST": "${clickhouse_host}",
-        "CLICKHOUSE_USER": "${clickhouse_user}",
-        "CLICKHOUSE_PASSWORD": "${clickhouse_password}",
-        "CLICKHOUSE_PORT": "${clickhouse_port}",
-        "CLICKHOUSE_DATABASE": "${clickhouse_database}",
-        "CLICKHOUSE_SECURE": "${clickhouse_secure}",
-        "CLICKHOUSE_VERIFY": "${clickhouse_verify}"
+        "CLICKHOUSE_HOST": "${user_config.host}",
+        "CLICKHOUSE_USER": "${user_config.user}",
+        "CLICKHOUSE_PASSWORD": "${user_config.password}",
+        "CLICKHOUSE_PORT": "${user_config.port}",
+        "CLICKHOUSE_DATABASE": "${user_config.database}"
       }
     }
   }
