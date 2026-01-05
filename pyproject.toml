@@ -29,7 +29,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["mcp_clickhouse"]
+packages = ["src/mcp_clickhouse"]
 
 [tool.ruff]
 line-length = 100

@@ -583,3 +583,8 @@ if os.getenv("CHDB_ENABLED", "false").lower() == "true":
 
 # ASGI application for HTTP deployment (e.g., uvicorn mcp_clickhouse.mcp_server:app)
 app = mcp.http_app()
+
+
+# Stdio entry point for Claude Desktop / mpak
+if __name__ == "__main__":
+    mcp.run()
