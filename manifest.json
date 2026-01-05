@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
-  "name": "ai.nimbletools/clickhouse",
-  "version": "0.1.13-mcpb.3",
+  "name": "@nimblebraininc/clickhouse",
+  "version": "0.1.13-mcpb.4",
   "description": "ClickHouse database connectivity with read-only SQL queries, schema exploration, and chDB support",
   "author": {
     "name": "ClickHouse Inc"
