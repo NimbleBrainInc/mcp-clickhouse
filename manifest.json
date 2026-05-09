@@ -1,11 +1,12 @@
 {
   "manifest_version": "0.3",
   "name": "@nimblebraininc/clickhouse",
-  "version": "0.1.13-mcpb.4",
+  "version": "0.1.13-mcpb.5",
   "description": "ClickHouse database connectivity with read-only SQL queries, schema exploration, and chDB support",
   "author": {
     "name": "ClickHouse Inc"
   },
+  "icon": "https://static.nimblebrain.ai/icons/clickhouse.png",
   "user_config": {
     "host": {
       "type": "string",
@@ -44,7 +45,10 @@
     "entry_point": "mcp_clickhouse.mcp_server",
     "mcp_config": {
       "command": "python",
-      "args": ["-m", "mcp_clickhouse.mcp_server"],
+      "args": [
+        "-m",
+        "mcp_clickhouse.mcp_server"
+      ],
       "env": {
         "CLICKHOUSE_HOST": "${user_config.host}",
         "CLICKHOUSE_USER": "${user_config.user}",
